@@ -14,8 +14,9 @@ import java.util.List;
 @Entity
 public class Employer extends AbstractEntity {
 
-//    @JoinColumn(name = "employer_id")
-    @OneToMany(mappedBy = "employer")
+    @JoinColumn(name = "employer_id")
+//    @OneToMany(mappedBy = "employer")
+    @OneToMany
     private final List<Job> jobs = new ArrayList<>(); //--done 3a. add one-to-many relationship
 
     @NotBlank

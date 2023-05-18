@@ -2,6 +2,7 @@ package org.launchcode.techjobs.persistent.controllers;
 
 import org.launchcode.techjobs.persistent.models.Employer;
 import org.launchcode.techjobs.persistent.models.Job;
+import org.launchcode.techjobs.persistent.models.Skill;
 import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
 import org.launchcode.techjobs.persistent.models.data.JobRepository;
 import org.launchcode.techjobs.persistent.models.data.SkillRepository;
@@ -49,7 +50,7 @@ public class HomeController {
         return "add";
     }
 
-    @PostMapping("add")
+    @PostMapping("add")  //--done part 3 and part 4 create new jobs
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
 
@@ -60,6 +61,8 @@ public class HomeController {
             Optional<Employer> optEmployer = employerRepository.findById(employerId);
             Employer employer = optEmployer.get();
             newJob.setEmployer(employer);
+            List<Skill> skillObjects = (List<Skill>) skillRepository.findAllById(skills);
+            newJob.setSkills(skillObjects);
             jobRepository.save(newJob);
         }
 
