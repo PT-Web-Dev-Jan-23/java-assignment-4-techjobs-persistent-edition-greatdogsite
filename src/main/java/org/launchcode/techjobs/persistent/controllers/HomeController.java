@@ -70,7 +70,7 @@ public class HomeController {
                 newJob.setEmployer(employer);
             } catch(Exception e){
                 System.out.println(e);
-            }
+            } 
             List<Skill> skillObjects = (List<Skill>) skillRepository.findAllById(skills);
             newJob.setSkills(skillObjects);
             jobRepository.save(newJob);
